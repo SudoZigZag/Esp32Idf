@@ -36,23 +36,24 @@ usage() {
 
 # Function to build for a specific target
 build_target() {
+
     local target=$1
     
     echo -e "${BLUE}================================${NC}"
     echo -e "${BLUE}Building for: $target${NC}"
     echo -e "${BLUE}================================${NC}"
-
-    # Set target (only if not already set or different target)
-    echo "Setting target to $target..."
+    
+    # Check if target has changed
     CURRENT_TARGET=$(grep "CONFIG_IDF_TARGET=" sdkconfig 2>/dev/null | cut -d'"' -f2)
-
-    if [ "$CURRENT_TARGET" != "$target" ]; then
-        echo "Target changed from '$CURRENT_TARGET' to '$target', reconfiguring..."
+    
+    if [ "$CURRENT_TARGET" != "$target" ] || [ ! -f "sdkconfig" ]; then
+        # Target changed or no config exists - full reconfigure needed
+        echo "Setting target to $target..."
         idf.py fullclean > /dev/null 2>&1
         idf.py set-target $target
     else
-        echo "Target already set to $target, cleaning build directory only..."
-        rm -rf build
+        # Same target - do incremental build (no cleaning!)
+        echo "Target already set to $target, doing incremental build..."
     fi
     
     if [ $? -ne 0 ]; then
@@ -60,7 +61,7 @@ build_target() {
         return 1
     fi
     
-    # Build
+    # Build (CMake will automatically detect what changed)
     echo "Building..."
     idf.py build
     
