@@ -1,0 +1,29 @@
+# Build outputs
+build/
+binaries/
+
+# ESP-IDF generated files
+sdkconfig
+sdkconfig.old
+dependencies.lock
+
+# Generated setup script
+setup_env.sh
+
+# macOS
+.DS_Store
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs
+*.log
