@@ -7,6 +7,7 @@ sdkconfig
 sdkconfig.old
 dependencies.lock
 
+wifi_passwords.h
 # Generated setup script
 setup_env.sh
 
@@ -27,3 +28,5 @@ __pycache__/
 
 # Logs
 *.log
+
+managed_components/
