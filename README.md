@@ -144,3 +144,29 @@ idf.py -p /dev/cu.usbmodem-* flash monitor
 ## Contributing
 
 Pull requests welcome!
+
+## Modular Architecture
+
+This project uses a modular app system. Each feature is a separate application.
+
+### Available Apps
+
+- `app_wifi_basic` - WiFi connection + mDNS
+- `app_multi_thread` - Dual-core threading examples  
+- `app_http_server` - HTTP web server (coming soon)
+
+### Switching Apps
+
+Edit `main/app_registry.h`:
+```cpp
+#define ACTIVE_APP 0  // Change this number
+```
+
+Then rebuild and flash.
+
+### Adding New Apps
+
+1. Create `main/apps/app_yourname.cpp`
+2. Add to `main/app_registry.h`
+3. Add to `main/CMakeLists.txt`
+4. Build and run!
