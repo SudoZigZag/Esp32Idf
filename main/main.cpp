@@ -36,7 +36,7 @@ extern "C" void app_main(void)
         printf("════════════════════════════════════════════════\n\n");
         
         // Call the registered app function
-        app_registry[ACTIVE_APP].function();
+        app_registry[ACTIVE_APP].function(true , NULL);
     } else {
         printf("ERROR: Invalid ACTIVE_APP index %d\n", ACTIVE_APP);
         printf("Valid range: 0-%d\n", app_count - 1);

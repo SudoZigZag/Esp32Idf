@@ -24,7 +24,7 @@ void task_stats(void *pvParameters)
     }
 }
 
-void app_multi_thread(void)
+void app_multi_thread(bool run_forever = true, void *arg = NULL)
 {
     ESP_LOGI(TAG, "Multi-threading App Starting...");
     
@@ -35,7 +35,7 @@ void app_multi_thread(void)
     ESP_LOGI(TAG, "Tasks created on both cores!");
     
     // Keep running
-    while(1) {
+    while(run_forever) {
         vTaskDelay(portMAX_DELAY);
     }
 }

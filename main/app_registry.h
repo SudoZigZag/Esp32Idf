@@ -2,7 +2,7 @@
 #define APP_REGISTRY_H
 
 // Function signature for all apps
-typedef void (*app_function_t)(void);
+typedef void (*app_function_t)(bool run_forever, void *arg);
 
 // Registry structure
 struct AppEntry {
@@ -12,9 +12,9 @@ struct AppEntry {
 };
 
 // Declare all your apps here
-void app_wifi_basic(void);
-void app_multi_thread(void);
-void app_http_server(void);
+void app_wifi_basic(bool run_forever = true, void *arg = NULL);
+void app_multi_thread(bool run_forever = true, void *arg = NULL);
+void app_http_server(bool run_forever = true, void *arg = NULL);
 // Add more as you create them...
 
 // Registry table - add your apps here

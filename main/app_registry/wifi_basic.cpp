@@ -39,7 +39,7 @@ static void wifi_event_handler(void* arg, esp_event_base_t event_base,
     }
 }
 
-void app_wifi_basic(void)
+void app_wifi_basic(bool run_forever = true, void *arg = NULL)
 {
     ESP_LOGI(TAG, "WiFi Basic App Starting...");
     
@@ -79,7 +79,7 @@ void app_wifi_basic(void)
     }
     
     // Main loop
-    while(1) {
+    while(run_forever) {
         ESP_LOGI(TAG, "WiFi running... (ping %s.local)", MDNS_HOSTNAME);
         vTaskDelay(10000 / portTICK_PERIOD_MS);
     }
